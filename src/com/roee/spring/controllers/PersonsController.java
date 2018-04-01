@@ -13,7 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -114,22 +113,8 @@ public class PersonsController {
     }
 
 
-    @GetMapping(path = "/dltest")
+    @GetMapping(path = "/test")
     public String blTest() {
-        return this.bl.test();
+        return "Test";
     }
-
-    @GetMapping(path = "/testlist")
-    public @ResponseBody List<String> testList() {
-        List<String> list =  new ArrayList<String>();
-        list.add("hello");
-        return list;
-    }
-
-    @RequestMapping(path = "/teststring", method = RequestMethod.GET)
-    public String testString() {
-        return "floob";
-    }
-
-
 }

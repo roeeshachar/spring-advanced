@@ -18,11 +18,6 @@ public class PersonsRepositoryCassandraAdapter implements IPersonsRepositoryAdap
         this.personsRepositoryCassandra = personsRepositoryCassandra;
     }
 
-    @Override
-    public String test() {
-        return "DB";
-    }
-
     /**
      * Checks whether the given person exists in the system
      *
@@ -30,7 +25,7 @@ public class PersonsRepositoryCassandraAdapter implements IPersonsRepositoryAdap
      * @return true if exists, false otherwise
      */
     public boolean exists(Person person) {
-        return false;
+        return this.personsRepositoryCassandra.existsById(person.getId());
     }
 
     /**
@@ -39,7 +34,7 @@ public class PersonsRepositoryCassandraAdapter implements IPersonsRepositoryAdap
      * @param person - the person to add
      */
     public void save(Person person) {
-
+        this.personsRepositoryCassandra.save(person);
     }
 
     /**
@@ -48,6 +43,6 @@ public class PersonsRepositoryCassandraAdapter implements IPersonsRepositoryAdap
      * @return - The list of persons in the system
      */
     public List<Person> findAll() {
-        return null;
+        return this.personsRepositoryCassandra.findAll();
     }
 }

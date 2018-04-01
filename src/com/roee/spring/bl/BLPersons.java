@@ -24,10 +24,6 @@ public class BLPersons {
         this.dl = dl;
     }
 
-    public String test() {
-        return this.dl.test();
-    }
-
     /**
      * Checks whether the given person exists in the system
      *

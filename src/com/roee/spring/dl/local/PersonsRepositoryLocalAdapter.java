@@ -17,19 +17,14 @@ public class PersonsRepositoryLocalAdapter implements IPersonsRepositoryAdapter 
      */
     public PersonsRepositoryLocalAdapter() {
         persons = new HashMap<>();
-        persons.put(1, new Person(1, "roee"));
-        persons.put(2, new Person(1, "shachar"));
-    }
-
-    @Override
-    public String test() {
-        return "Local";
+        persons.put(1, new Person(1, "local"));
+        persons.put(2, new Person(2, "repository"));
     }
 
     /**
      * Checks whether the given person exists in the system
      *
-     * @param person - the person to check if exists
+     * @param person - the person to check if existsª
      * @return true if exists, false otherwise
      */
     public boolean exists(Person person) {
