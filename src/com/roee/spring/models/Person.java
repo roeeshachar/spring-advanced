@@ -22,6 +22,12 @@ public class Person implements Serializable{
     public String name;
 
     /**
+     * An empty constructor for the Person class
+     */
+    public Person() {
+    }
+
+    /**
      * A constructor for the Person class
      * @param id - the person's id
      * @param name - the person's name
