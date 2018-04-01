@@ -1,21 +1,27 @@
-package main.java.api.BL;
+package com.roee.spring.bl;
 
-import main.java.api.DL.DLPersonsInterface;
-import main.java.api.models.Person;
+import com.roee.spring.dl.IPersonsRepositoryAdapter;
+import com.roee.spring.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Business Layer for managing persons
+ */
 @Component
 public class BLPersons {
 
-    private DLPersonsInterface dl;
+    private final IPersonsRepositoryAdapter dl;
 
+    /**
+     * A constructor for BLPersons
+     * @param dl - data layer - injected.
+     */
     @Autowired
-    public void setDl(@Qualifier("DLPersonsLocal") DLPersonsInterface dl){
-        this.dl=dl;
+    public BLPersons(IPersonsRepositoryAdapter dl) {
+        this.dl = dl;
     }
 
     public String test() {
@@ -29,7 +35,7 @@ public class BLPersons {
      * @return true if exists, false otherwise
      */
     public boolean personExists(Person person) {
-        return (this.dl.personExists(person));
+        return (this.dl.exists(person));
     }
 
     /**
@@ -38,7 +44,7 @@ public class BLPersons {
      * @param person - the person to add
      */
     public void addPerson(Person person) {
-        this.dl.addPerson(person);
+        this.dl.save(person);
     }
 
 
@@ -48,6 +54,6 @@ public class BLPersons {
      * @return - The list of persons in the system
      */
     public List<Person> getPersons() {
-        return this.dl.getPersons();
+        return this.dl.findAll();
     }
 }

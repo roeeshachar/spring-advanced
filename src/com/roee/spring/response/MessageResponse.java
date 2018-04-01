@@ -1,4 +1,4 @@
-package main.java.api.response;
+package com.roee.spring.response;
 
 /**
  * Represents a response containing a message

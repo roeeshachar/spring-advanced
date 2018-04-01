@@ -1,6 +1,6 @@
-package main.java.api.response;
+package com.roee.spring.response;
 
-import main.java.api.models.Person;
+import com.roee.spring.models.Person;
 
 /**
  * Represents a response containing a message and a person, inherits from MessageResponse

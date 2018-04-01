@@ -1,7 +1,7 @@
-package main.java.api.DL.local;
+package com.roee.spring.dl.local;
 
-import main.java.api.DL.DLPersonsInterface;
-import main.java.api.models.Person;
+import com.roee.spring.dl.IPersonsRepositoryAdapter;
+import com.roee.spring.models.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,10 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 
 @Component
-public class DLPersonsLocal implements DLPersonsInterface {
+public class PersonsRepositoryLocalAdapter implements IPersonsRepositoryAdapter {
     private final HashMap<Integer, Person> persons;
 
-    public DLPersonsLocal() {
+    /**
+     * A constructor for Local Persons Repository
+     */
+    public PersonsRepositoryLocalAdapter() {
         persons = new HashMap<>();
         persons.put(1, new Person(1, "roee"));
         persons.put(2, new Person(1, "shachar"));
@@ -29,7 +32,7 @@ public class DLPersonsLocal implements DLPersonsInterface {
      * @param person - the person to check if exists
      * @return true if exists, false otherwise
      */
-    public boolean personExists(Person person) {
+    public boolean exists(Person person) {
         return (this.persons.containsKey(person.getId()));
     }
 
@@ -38,7 +41,7 @@ public class DLPersonsLocal implements DLPersonsInterface {
      *
      * @param person - the person to add
      */
-    public void addPerson(Person person) {
+    public void save(Person person) {
         this.persons.put(person.getId(), person);
     }
 
@@ -47,7 +50,7 @@ public class DLPersonsLocal implements DLPersonsInterface {
      *
      * @return - The list of persons in the system
      */
-    public List<Person> getPersons() {
+    public List<Person> findAll() {
         return new ArrayList<>(this.persons.values());
     }
 }

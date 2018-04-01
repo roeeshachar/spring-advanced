@@ -1,14 +1,13 @@
-package main.java.api.controllers;
+package com.roee.spring.controllers;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import main.java.api.BL.BLPersons;
-import main.java.api.exceptions.PersonAlreadyExistsException;
-import main.java.api.models.Person;
-import main.java.api.response.MessageResponse;
-import main.java.api.response.PersonResponse;
+import com.roee.spring.bl.BLPersons;
+import com.roee.spring.exceptions.PersonAlreadyExistsException;
+import com.roee.spring.models.Person;
+import com.roee.spring.response.MessageResponse;
+import com.roee.spring.response.PersonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +21,12 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/persons")
-@ComponentScan(value = "main.java.api.BL")
 public class PersonsController {
 
     private final BLPersons bl;
 
     /**
-     * A constructor for the person controller. Initialized the collection of persons
+     * A constructor for the person controller
      *
      * @param bl - persons business layer
      */
@@ -116,16 +114,21 @@ public class PersonsController {
     }
 
 
-    @GetMapping(path = "/bltest")
+    @GetMapping(path = "/dltest")
     public String blTest() {
         return this.bl.test();
     }
 
-    @GetMapping(path = "/test")
-    public List<String> test() {
+    @GetMapping(path = "/testlist")
+    public @ResponseBody List<String> testList() {
         List<String> list =  new ArrayList<String>();
         list.add("hello");
         return list;
+    }
+
+    @RequestMapping(path = "/teststring", method = RequestMethod.GET)
+    public String testString() {
+        return "floob";
     }
 
 

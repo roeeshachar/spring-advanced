@@ -1,11 +1,13 @@
-package main.java.api;
+package com.roee.spring;
 
+import com.roee.spring.dl.cassandra.config.CassandraConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
+
 
 public class ApiWebApplicationInitializer implements WebApplicationInitializer {
 
@@ -15,6 +17,8 @@ public class ApiWebApplicationInitializer implements WebApplicationInitializer {
         // Load Spring web application configuration
         AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
         ac.register(WebConfig.class);
+        ac.register(CassandraConfig.class);
+        ac.setServletContext(servletCxt);
         ac.refresh();
 
         // Create and register the DispatcherServlet

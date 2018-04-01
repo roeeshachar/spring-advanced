@@ -1,4 +1,4 @@
-package main.java.api.exceptions;
+package com.roee.spring.exceptions;
 
 
 /**
